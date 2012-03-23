@@ -6,7 +6,7 @@ namespace Bennington.Cms.PrincipalProvider
     {
         public void Configure(IMenuRegistry sectionMenuRegistry)
         {
-            sectionMenuRegistry.Add(new ActionIconMenuItem("User Management", "~/Content/Canvas/UserManagementIcon.gif", "Index", "User"));
+            sectionMenuRegistry.Add(new ActionIconMenuItem("Security Management", "~/Content/Canvas/UserManagementIcon.gif", "Index", "User"));
         }
     }
 }

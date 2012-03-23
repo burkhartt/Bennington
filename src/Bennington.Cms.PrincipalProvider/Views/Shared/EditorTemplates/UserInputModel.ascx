@@ -51,4 +51,12 @@
                 <%: Html.PasswordFor(model => model.ConfirmPassword) %>
                 <%: Html.ValidationMessageFor(model => model.ConfirmPassword) %>
             </div>
+
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Roles) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.DropDownListFor(model => model.Role, Model.Roles) %>
+                <%: Html.ValidationMessageFor(model => model.Roles) %>
+            </div>
         </fieldset>

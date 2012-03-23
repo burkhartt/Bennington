@@ -14,6 +14,7 @@ namespace Bennington.Cms.PrincipalProvider.Repositories
 		IEnumerable<User> GetAll();
 		string SaveAndReturnId(User instance);
 		void Delete(string id);
+	    User GetById(string id);
 	}
 
 	public class UserRepository : ObjectStore<User>, IUserRepository

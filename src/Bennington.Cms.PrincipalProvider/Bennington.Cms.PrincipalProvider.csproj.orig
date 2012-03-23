@@ -92,7 +92,6 @@
   <ItemGroup>
     <Compile Include="AddDummyAdminAccountIfItDoesntExistBlade.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\UnauthorizedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Encryption\EncryptionService.cs" />
     <Compile Include="Global.asax.cs">
@@ -106,9 +105,6 @@
     <Compile Include="Mappers\IRoleToRoleInputModelMapper.cs" />
     <Compile Include="Mappers\UserInputModelToUserMapper.cs" />
     <Compile Include="Mappers\UserToUserInputModelMapper.cs" />
-    <Compile Include="MenuSystem\GenericSubMenuItem.cs" />
-    <Compile Include="MenuSystem\PermissionsSubMenuItem.cs" />
-    <Compile Include="MenuSystem\SectionMenuConfigurer.cs" />
     <Compile Include="Models\ContentSection.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
@@ -150,7 +146,9 @@
     <EmbeddedResource Include="Scripts\plugins\scrollTo\jquery.scrollTo.js" />
     <Content Include="Scripts\plugins\scrollTo\README.txt" />
     <EmbeddedResource Include="Scripts\ui.multiselect.js" />
-    <EmbeddedResource Include="Views\Unauthorized\Index.cshtml" />
+    <Content Include="Views\User\CellTemplates\Username.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <EmbeddedResource Include="Views\User\Modify.aspx" />
     <EmbeddedResource Include="Views\Shared\EditorTemplates\UserInputModel.ascx" />
     <Content Include="Views\Role\Modify.aspx" />
@@ -181,10 +179,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Role\Index\CellTemplates\Name.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\User\Index\CellTemplates\Username.cshtml" />
+    <Content Include="Views\Role\Index\CellTemplates\Name.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -201,7 +196,11 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>56382</DevelopmentServerPort>
+<<<<<<< HEAD
+          <DevelopmentServerPort>49394</DevelopmentServerPort>
+=======
+          <DevelopmentServerPort>56610</DevelopmentServerPort>
+>>>>>>> c241d7e1d594aaae0a6bc82448729c76b54a9f8c
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

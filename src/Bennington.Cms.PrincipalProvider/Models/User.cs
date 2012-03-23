@@ -27,5 +27,8 @@ namespace Bennington.Cms.PrincipalProvider.Models
 
         [Hidden]
         public string Password { get; set; }
+
+        [Hidden]
+        public string Role { get; set; }
 	}
 }

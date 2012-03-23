@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Bennington.Cms.PrincipalProvider.Models
@@ -27,5 +24,10 @@ namespace Bennington.Cms.PrincipalProvider.Models
 
 		[DisplayName("Confirm Password")]
 		public string ConfirmPassword { get; set; }
+
+        [DisplayName("Role")]
+        public IEnumerable<SelectListItem> Roles { get; set; }
+
+        public string Role { get; set; }
 	}
 }

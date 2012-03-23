@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Bennington.Cms.Controllers;
 using Bennington.Cms.PrincipalProvider.Mappers;
 using Bennington.Cms.PrincipalProvider.Models;
 using Bennington.Cms.PrincipalProvider.Repositories;
 using Bennington.Cms.PrincipalProvider.Services;
-using Bennington.Cms.PrincipalProvider.ViewModelBuilders;
 using Bennington.Core.Helpers;
-using Bennington.Repository;
 
 namespace Bennington.Cms.PrincipalProvider.Controllers
 {
@@ -22,14 +16,17 @@ namespace Bennington.Cms.PrincipalProvider.Controllers
     	private readonly IUserRepository userRepository;
     	private readonly IUserToUserInputModelMapper userToUserInputModelMapper;
     	private readonly IGuidGetter guidGetter;
+        private readonly IRoleRepository roleRepository;
 
-    	public UserController(IProcessUserInputModelService processUserInputModelService,
+        public UserController(IProcessUserInputModelService processUserInputModelService,
 								IUserRepository userRepository,
 								IUserToUserInputModelMapper userToUserInputModelMapper,
-								IGuidGetter guidGetter)
+								IGuidGetter guidGetter,
+            IRoleRepository roleRepository)
     	{
     		this.guidGetter = guidGetter;
-    		this.userToUserInputModelMapper = userToUserInputModelMapper;
+    	    this.roleRepository = roleRepository;
+    	    this.userToUserInputModelMapper = userToUserInputModelMapper;
     		this.userRepository = userRepository;
     		this.processUserInputModelService = processUserInputModelService;
     	}
@@ -39,9 +36,28 @@ namespace Bennington.Cms.PrincipalProvider.Controllers
             return userRepository.GetAll().AsQueryable();
         }
 
+        protected override UserInputModel CreateForm()
+        {
+            var form = base.CreateForm();
+            form.Roles = roleRepository.GetAll().Where(x => x.Inactive == false).Select(x => new SelectListItem
+                                                                                                     {
+                                                                                                         Text = x.Name,
+                                                                                                         Value = x.Id
+                                                                                                     }).OrderBy(x => x.Text);
+
+            return form;
+        }
+
         public override UserInputModel GetFormById(object id)
         {
-            return userToUserInputModelMapper.CreateInstance(userRepository.GetAll().Where(a => a.Id == id.ToString()).FirstOrDefault());
+            var form = userToUserInputModelMapper.CreateInstance(userRepository.GetAll().Where(a => a.Id == id.ToString()).FirstOrDefault());
+            form.Roles = roleRepository.GetAll().Where(x => x.Inactive == false).Select(x => new SelectListItem
+                                                                                                     {
+                                                                                                         Text = x.Name,
+                                                                                                         Value = x.Id
+                                                                                                     }).OrderBy(x => x.Text);
+
+            return form;
         }
 
         public override void InsertForm(UserInputModel form)
