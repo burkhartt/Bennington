@@ -25,7 +25,7 @@ namespace Bennington.ContentTree.WorkflowDashboard.Repositories
 
         public void Create(Guid id)
         {
-            GetDatabase().WorkflowItems.Insert(Id: id);
+            GetDatabase().WorkflowItems.Insert(Id: id, LastModifyDate: DateTime.Now);
         }
 
         public WorkflowItem GetById(Guid id)
@@ -35,6 +35,9 @@ namespace Bennington.ContentTree.WorkflowDashboard.Repositories
 
         public void Update(WorkflowItem item)
         {
+            if (item.LastModifyDate == DateTime.MinValue)
+                item.LastModifyDate = DateTime.Now;
+
             GetDatabase().WorkflowItems.Update(item);
         }
 

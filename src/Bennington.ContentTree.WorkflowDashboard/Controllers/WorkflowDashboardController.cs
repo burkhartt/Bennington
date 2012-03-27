@@ -26,7 +26,9 @@ namespace Bennington.ContentTree.WorkflowDashboard.Controllers
                                                                        Name = x.Name,
                                                                        Status = x.Status,
                                                                        Type = x.Type ?? "",
-                                                                       Link = workflowItemLinkBuilder.BuildLink(x.Type, x.TreeNodeId)
+                                                                       Link = workflowItemLinkBuilder.BuildLink(x.Type, x.TreeNodeId),
+                                                                       LastModifiedBy = x.LastModifiedBy,
+                                                                       LastModifyDate = x.LastModifyDate
                                                                    }).AsQueryable();
         }
     }

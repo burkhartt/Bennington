@@ -13,5 +13,9 @@ namespace Bennington.ContentTree.WorkflowDashboard.Models
         public string Type { get; set; }
 
         public Guid TreeNodeId { get; set; }
+
+        public string LastModifiedBy { get; set; }
+
+        public DateTime LastModifyDate { get; set; }
     }
 }

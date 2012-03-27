@@ -9,7 +9,10 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
     public class WorkflowDenormalizer : IHandleDomainEvents<PageWorkflowStatusSetEvent>,
         IHandleDomainEvents<PageCreatedEvent>,
         IHandleDomainEvents<PageNameSetEvent>,
-        IHandleDomainEvents<PageTreeNodeIdSetEvent>
+        IHandleDomainEvents<PageTreeNodeIdSetEvent>,
+        IHandleDomainEvents<PageLastModifyBySetEvent>,
+        IHandleDomainEvents<PageLastModifyDateSetEvent>,
+        IHandleDomainEvents<PageTypeSetEvent>
     {
         private readonly IWorkflowItemRepository workflowItemRepository;
 
@@ -41,6 +44,27 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
         {
             var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
             item.TreeNodeId = domainEvent.TreeNodeId;
+            workflowItemRepository.Update(item);
+        }
+
+        public void Handle(PageLastModifyBySetEvent domainEvent)
+        {
+            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
+            item.LastModifiedBy = domainEvent.LastModifyBy;
+            workflowItemRepository.Update(item);
+        }
+
+        public void Handle(PageLastModifyDateSetEvent domainEvent)
+        {
+            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
+            item.LastModifyDate = domainEvent.DateTime;
+            workflowItemRepository.Update(item);
+        }
+
+        public void Handle(PageTypeSetEvent domainEvent)
+        {
+            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
+            item.Type = domainEvent.Type.ToString();
             workflowItemRepository.Update(item);
         }
     }
