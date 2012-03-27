@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Bennington.ContentTree.Domain.AggregateRoots;
+using Bennington.ContentTree.Domain.Events;
 using Bennington.ContentTree.Domain.Events.Page;
 using Bennington.ContentTree.Providers.ContentNodeProvider.Data;
 using Bennington.ContentTree.Providers.ContentNodeProvider.Repositories;
@@ -25,7 +26,8 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
 														IHandleDomainEvents<PageHiddenSetEvent>,
 														IHandleDomainEvents<PageInactiveSetEvent>,
                                                         IHandleDomainEvents<PageLastModifyBySetEvent>,
-                                                        IHandleDomainEvents<PageLastModifyDateSetEvent>
+                                                        IHandleDomainEvents<PageLastModifyDateSetEvent>,
+        IHandleDomainEvents<PageWorkflowStatusSetEvent>
 	{
 		private readonly IContentNodeProviderDraftRepository contentNodeProviderDraftRepository;
 
@@ -160,5 +162,12 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
             contentNodeProviderDraft.MetaKeywords = domainEvent.MetaKeywords;
             contentNodeProviderDraftRepository.Update(contentNodeProviderDraft);
         }
+
+	    public void Handle(PageWorkflowStatusSetEvent domainEvent)
+	    {
+            var contentNodeProviderDraft = GetContentNodeProviderDraft(domainEvent);
+            contentNodeProviderDraft.WorkflowStatus = domainEvent.Status;
+            contentNodeProviderDraftRepository.Update(contentNodeProviderDraft);
+	    }
 	}
 }

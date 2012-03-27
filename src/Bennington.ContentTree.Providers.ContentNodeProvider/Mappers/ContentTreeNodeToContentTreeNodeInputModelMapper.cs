@@ -30,13 +30,14 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Mappers
                 .ForMember(a => a.FileUpload, b => b.Ignore())
                 .ForMember(a => a.Id, b => b.MapFrom(c => c))
                 .ForMember(a => a.UrlRelativeToFileUploadRoot, b => b.Ignore())
-                .ForMember(a => a.Remove, b => b.Ignore())
-                ;
+                .ForMember(a => a.Remove, b => b.Ignore());
+
 			configuration.CreateMap<ContentTreePageNode, ContentTreeNodeInputModel>()
 				.ForMember(dest => dest.FormAction, opt => opt.Ignore())
                 .ForMember(a => a.TreeNodeId, b=> b.MapFrom(c => c.Id))
 				.ForMember(dest => dest.ParentTreeNodeId, opt => opt.Ignore())
-                .ForMember(a => a.HeaderImage, b => b.Ignore());
+                .ForMember(a => a.HeaderImage, b => b.Ignore())
+                .ForMember(a => a.WorkflowStatuses, b => b.Ignore());
 		}
 
 		public override ContentTreeNodeInputModel CreateInstance(ContentTreePageNode source)

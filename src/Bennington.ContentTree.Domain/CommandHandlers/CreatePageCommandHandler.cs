@@ -32,6 +32,7 @@ namespace Bennington.ContentTree.Domain.CommandHandlers
 			page.SetMetaDescription(command.MetaDescription);
 			page.SetMetaKeywords(command.MetaKeyword);
 			page.SetSequence(command.Sequence);
+            page.SetWorkflowStatus(command.WorkflowStatus);
             page.SetLastModifyBy(command.LastModifyBy);
             page.SetLastModifyDate(DateTime.Now);
 			domainRepository.Save(page);

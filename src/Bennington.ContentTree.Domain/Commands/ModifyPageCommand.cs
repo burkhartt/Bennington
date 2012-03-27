@@ -6,6 +6,7 @@ namespace Bennington.ContentTree.Domain.Commands
 	public class ModifyPageCommand : CommandWithAggregateRootId
 	{
 		public string Name {get; set;}
+        public string WorkflowStatus { get; set; }
 		public bool Hidden { get; set; }
 		public bool Inactive { get; set; }
 		public string ActionId { get; set; }

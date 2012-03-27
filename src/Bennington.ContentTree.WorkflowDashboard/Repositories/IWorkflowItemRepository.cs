@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using Bennington.ContentTree.WorkflowDashboard.Models;
 using Simple.Data;
 
@@ -8,14 +9,33 @@ namespace Bennington.ContentTree.WorkflowDashboard.Repositories
 {
     public interface IWorkflowItemRepository
     {
-        IEnumerable<WorkflowItem> GetAll();
+        IQueryable<WorkflowItem> GetAll();
+        void Create(Guid id);
+        WorkflowItem GetById(Guid id);
+        void Update(WorkflowItem item);
     }
 
     public class WorkflowItemRepository : IWorkflowItemRepository
     {
-        public IEnumerable<WorkflowItem> GetAll()
+        public IQueryable<WorkflowItem> GetAll()
         {
-            return GetDatabase().WorkflowItems.All().ToList<WorkflowItem>();
+            IList<WorkflowItem> workflowItems = GetDatabase().WorkflowItems.All().ToList<WorkflowItem>();
+            return workflowItems.AsQueryable();
+        }
+
+        public void Create(Guid id)
+        {
+            GetDatabase().WorkflowItems.Insert(Id: id);
+        }
+
+        public WorkflowItem GetById(Guid id)
+        {
+            return (WorkflowItem)GetDatabase().WorkflowItems.FindById(id);
+        }
+
+        public void Update(WorkflowItem item)
+        {
+            GetDatabase().WorkflowItems.Update(item);
         }
 
         private dynamic GetDatabase()

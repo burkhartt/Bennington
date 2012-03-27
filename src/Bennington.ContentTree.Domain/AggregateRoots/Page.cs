@@ -1,6 +1,6 @@
 using System;
+using Bennington.ContentTree.Domain.Events;
 using Bennington.ContentTree.Domain.Events.Page;
-using SimpleCqrs.Eventing;
 
 namespace Bennington.ContentTree.Domain.AggregateRoots
 {
@@ -37,6 +37,11 @@ namespace Bennington.ContentTree.Domain.AggregateRoots
 		{
 			Apply(new PageNameSetEvent() { AggregateRootId = Id, Name = name });
 		}
+
+        public void SetWorkflowStatus(string status)
+        {
+            Apply(new PageWorkflowStatusSetEvent { AggregateRootId = Id, Status = status});
+        }
 
 		public void SetHidden(bool hidden)
 		{

@@ -19,6 +19,7 @@ namespace Bennington.Cms.PrincipalProvider.Mappers
 			configuration.CreateMap<Models.User, Models.UserInputModel>()
 					.ForMember(a => a.Password, b => b.Ignore())
 					.ForMember(a => a.ConfirmPassword, b => b.Ignore())
+                    .ForMember(a => a.Roles, b => b.Ignore())
 				;
 		}
 	}

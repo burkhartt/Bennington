@@ -77,3 +77,10 @@
         @*<%: Html.EditorFor(model => model.Body) %>*@
         @Html.ValidationMessageFor(model => model.Body)
     </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.WorkflowStatuses)
+    </div>
+    <div class="editor-label">
+        @Html.DropDownListFor(model => model.WorkflowStatus, Model.WorkflowStatuses)
+        @Html.ValidationMessageFor(model => model.WorkflowStatus)
+    </div>

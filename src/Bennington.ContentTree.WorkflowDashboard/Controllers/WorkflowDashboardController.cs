@@ -24,9 +24,9 @@ namespace Bennington.ContentTree.WorkflowDashboard.Controllers
                                                                    {
                                                                        Id = x.Id,
                                                                        Name = x.Name,
-                                                                       Status = x.Status.ToString(),
-                                                                       Type = x.Type.ToString(),
-                                                                       Link = workflowItemLinkBuilder.BuildLink(x.Type, x.Id)
+                                                                       Status = x.Status,
+                                                                       Type = x.Type ?? "",
+                                                                       Link = workflowItemLinkBuilder.BuildLink(x.Type, x.TreeNodeId)
                                                                    }).AsQueryable();
         }
     }

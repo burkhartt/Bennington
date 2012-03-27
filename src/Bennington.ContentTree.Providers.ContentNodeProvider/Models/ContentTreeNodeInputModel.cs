@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Bennington.FileUploadHandling.Models;
@@ -51,5 +53,10 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Models
 
         [HiddenInput(DisplayValue = false)]
         public string ControllerName { get; set; }
+
+	    public string WorkflowStatus { get; set; }
+
+        [DisplayName("Workflow Status")]
+        public IEnumerable<SelectListItem> WorkflowStatuses { get; set; }
 	}
 }

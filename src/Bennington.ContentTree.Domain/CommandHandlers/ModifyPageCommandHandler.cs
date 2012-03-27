@@ -10,6 +10,7 @@ namespace Bennington.ContentTree.Domain.CommandHandlers
 		public override void Handle(ModifyPageCommand command, Page page)
 		{
 			page.PageId = command.AggregateRootId;
+            page.SetWorkflowStatus(command.WorkflowStatus);
 			page.SetBody(command.Body);
 			page.SetName(command.Name);
 			page.SetHeaderText(command.HeaderText);

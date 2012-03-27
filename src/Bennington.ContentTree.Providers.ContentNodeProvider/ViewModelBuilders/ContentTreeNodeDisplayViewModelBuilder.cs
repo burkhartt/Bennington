@@ -34,7 +34,7 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.ViewModelBuilders
                        {
                            Body = node.Body,
                            Header = node.HeaderText,
-                           HeaderImage = GetHeaderImageUrl(node)
+                           HeaderImage = GetHeaderImageUrl(node),
                        };
 		}
 
