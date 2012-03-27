@@ -79,6 +79,7 @@
     <Compile Include="Builders\IWorkflowItemLinkBuilder.cs" />
     <Compile Include="Controllers\WorkflowDashboardController.cs" />
     <Compile Include="Denormalizers\WorkflowDenormalizer.cs" />
+    <Compile Include="IconMenuRegistration.cs" />
     <Compile Include="Models\WorkflowItem.cs" />
     <Compile Include="Models\WorkflowDashboardForm.cs" />
     <Compile Include="Models\WorkflowDashboardItem.cs" />

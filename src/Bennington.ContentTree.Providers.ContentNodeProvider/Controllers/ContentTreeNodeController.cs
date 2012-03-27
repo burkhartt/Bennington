@@ -146,7 +146,7 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
 	    {
 	        return new[]
 	                   {
-                           new SelectListItem { Text = "Draft", Value = "Draft" },
+                           new SelectListItem { Text = "Active", Value = "Active" },
                            new SelectListItem { Text = "Ready for Approval", Value = "Ready for Approval"},
                            new SelectListItem { Text = "Ready for Publish", Value = "Ready for Publish"}
 	                   };
