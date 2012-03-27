@@ -243,6 +243,10 @@
       <Project>{5440F3E1-26AD-4355-875B-50ABF7484181}</Project>
       <Name>Bennington.ContentTree.TreeManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bennington.ContentTree.WorkflowDashboard\Bennington.ContentTree.WorkflowDashboard.csproj">
+      <Project>{B5069FD2-FF97-4641-A75E-0470DDA34289}</Project>
+      <Name>Bennington.ContentTree.WorkflowDashboard</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bennington.Content\Bennington.Content.csproj">
       <Project>{790E0A90-8C75-42D3-B53B-11AD9332BF30}</Project>
       <Name>Bennington.Content</Name>

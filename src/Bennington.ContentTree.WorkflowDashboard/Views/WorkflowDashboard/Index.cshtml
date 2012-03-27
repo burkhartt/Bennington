@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Bennington.ContentTree.WorkflowDashboard.Models.ContentNodePending>
+
+@foreach (var item in Model)
+{
+    @item.Id
+    @item.Name
+    @item.Status
+}
