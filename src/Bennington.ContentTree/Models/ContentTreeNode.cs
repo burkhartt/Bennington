@@ -24,5 +24,7 @@ namespace Bennington.ContentTree.Models
         public string LastModifyBy { get; set; }
         public bool Inactive { get; set; }
         public string ControllerName { get; set; }
+
+	    public bool IsNew { get; set; }
 	}
 }

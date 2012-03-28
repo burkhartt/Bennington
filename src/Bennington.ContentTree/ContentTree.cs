@@ -118,7 +118,8 @@ namespace Bennington.ContentTree
                         LastModifyBy = contentTreeNode.LastModifyBy,
                         LastModifyDate = contentTreeNode.LastModifyDate,
                         Inactive = contentTreeNode.Inactive,
-                        ControllerName = provider.Controller
+                        ControllerName = provider.Controller,
+                        IsNew = contentTreeNode.IsNew
 			       	};
 			return treeNodeSummary;
 		}
