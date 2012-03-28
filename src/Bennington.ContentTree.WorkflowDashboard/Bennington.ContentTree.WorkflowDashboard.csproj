@@ -89,6 +89,7 @@
     <Compile Include="Routing\WorkflowDashboardRouting.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Content\Canvas\icondemo.png" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -117,7 +118,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

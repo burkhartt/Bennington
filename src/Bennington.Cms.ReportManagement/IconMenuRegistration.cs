@@ -6,7 +6,7 @@ namespace Bennington.Cms.ReportManagement
     {
         public void Configure(IMenuRegistry sectionMenuRegistry)
         {
-            sectionMenuRegistry.Add(new ActionIconMenuItem("Report Management", "~/Content/Canvas/icondemo.png", "Index", "ReportManagement"));
+            sectionMenuRegistry.Add(new ActionIconMenuItem("Report Management", "~/Content/Canvas/ReportsNav.png", "Index", "ReportManagement"));
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Bennington.ContentTree.WorkflowDashboard
     {
         public void Configure(IMenuRegistry sectionMenuRegistry)
         {
-            sectionMenuRegistry.Add(new ActionIconMenuItem("Workflow Dashboard", "~/Content/Canvas/UserManagementIcon.gif", "Index", "WorkflowDashboard"));
+            sectionMenuRegistry.Add(new ActionIconMenuItem("Workflow Dashboard", "~/Content/Canvas/icondemo.png", "Index", "WorkflowDashboard"));
         }
     }
 }
