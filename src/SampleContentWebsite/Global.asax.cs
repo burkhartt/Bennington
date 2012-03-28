@@ -1,8 +1,4 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using Bennington.ContentTree.Caching;
-using Bennington.Core.Caching;
+﻿using System.Web;
 using Bennington.Core.Configuration;
 using MvcTurbine.ComponentModel;
 using MvcTurbine.Unity;
@@ -27,10 +23,10 @@ namespace SampleContentWebsite
             base.Startup();
         }
 
-        public override string GetVaryByCustomString(HttpContext context, string varyByCustomOutputCacheDirectiveArgument)
-        {
-            return GetVaryByCustomStringHelper.GetVaryByCustomString(context, varyByCustomOutputCacheDirectiveArgument)
-                        ?? base.GetVaryByCustomString(context, varyByCustomOutputCacheDirectiveArgument);
-        }
+        //public override string GetVaryByCustomString(HttpContext context, string varyByCustomOutputCacheDirectiveArgument)
+        //{
+        //    return GetVaryByCustomStringHelper.GetVaryByCustomString(context, varyByCustomOutputCacheDirectiveArgument)
+        //                ?? base.GetVaryByCustomString(context, varyByCustomOutputCacheDirectiveArgument);
+        //}
     }
 }

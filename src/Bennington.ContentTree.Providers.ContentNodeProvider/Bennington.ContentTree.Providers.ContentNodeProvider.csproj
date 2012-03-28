@@ -153,10 +153,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bennington.Cms.PrincipalProvider\Bennington.Cms.PrincipalProvider.csproj">
-      <Project>{BE0B07EB-DEA9-4CA0-9D0D-E6892A1453B3}</Project>
-      <Name>Bennington.Cms.PrincipalProvider</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bennington.ContentTree.Domain\Bennington.ContentTree.Domain.csproj">
       <Project>{9F36EE92-6F9A-4C57-AA4B-81328423D0DA}</Project>
       <Name>Bennington.ContentTree.Domain</Name>

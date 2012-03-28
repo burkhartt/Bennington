@@ -14,7 +14,7 @@
     <AssemblyName>SampleContentWebsite</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -183,10 +183,6 @@
       <Project>{2932BB2B-8274-4E38-9EB0-EAB81659D0C4}</Project>
       <Name>Bennington.Content.Sql</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Bennington.ContentTree.Caching\Bennington.ContentTree.Caching.csproj">
-      <Project>{70590A70-555A-4ACC-9F67-13EAE5085037}</Project>
-      <Name>Bennington.ContentTree.Caching</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Bennington.ContentTree.Domain.SimpleCqrsRuntime\Bennington.ContentTree.Domain.SimpleCqrsRuntime.csproj">
       <Project>{A3141F33-55EA-4A70-AEB3-3C37FFAA86B5}</Project>
       <Name>Bennington.ContentTree.Domain.SimpleCqrsRuntime</Name>
@@ -202,6 +198,10 @@
     <ProjectReference Include="..\Bennington.ContentTree.Providers.ToolLinkNodeProvider\Bennington.ContentTree.Providers.ToolLinkNodeProvider.csproj">
       <Project>{BD01E5D0-D160-4E39-B18B-61D2B375977B}</Project>
       <Name>Bennington.ContentTree.Providers.ToolLinkNodeProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bennington.ContentTree\Bennington.ContentTree.csproj">
+      <Project>{97981EC9-A1C5-460E-9244-9D5C9169E47F}</Project>
+      <Name>Bennington.ContentTree</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bennington.Content\Bennington.Content.csproj">
       <Project>{790E0A90-8C75-42D3-B53B-11AD9332BF30}</Project>
@@ -235,7 +235,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54768</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
