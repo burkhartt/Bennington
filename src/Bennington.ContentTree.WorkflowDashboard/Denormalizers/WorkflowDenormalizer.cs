@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Bennington.ContentTree.Domain.Events;
 using Bennington.ContentTree.Domain.Events.Page;
+using Bennington.ContentTree.Domain.Events.TreeNode;
+using Bennington.ContentTree.Repositories;
 using Bennington.ContentTree.WorkflowDashboard.Repositories;
 using SimpleCqrs.Eventing;
 
@@ -11,14 +14,16 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
         IHandleDomainEvents<PageNameSetEvent>,
         IHandleDomainEvents<PageTreeNodeIdSetEvent>,
         IHandleDomainEvents<PageLastModifyBySetEvent>,
-        IHandleDomainEvents<PageLastModifyDateSetEvent>,
-        IHandleDomainEvents<PageTypeSetEvent>
+        IHandleDomainEvents<PageLastModifyDateSetEvent>
     {
         private readonly IWorkflowItemRepository workflowItemRepository;
+        private readonly ITreeNodeRepository treeNodeRepository;
 
-        public WorkflowDenormalizer(IWorkflowItemRepository workflowItemRepository)
+        public WorkflowDenormalizer(IWorkflowItemRepository workflowItemRepository,
+            ITreeNodeRepository treeNodeRepository)
         {
             this.workflowItemRepository = workflowItemRepository;
+            this.treeNodeRepository = treeNodeRepository;
         }
 
         public void Handle(PageWorkflowStatusSetEvent domainEvent)
@@ -44,6 +49,11 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
         {
             var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
             item.TreeNodeId = domainEvent.TreeNodeId;
+
+            var treeNode = treeNodeRepository.GetAll().First(x => x.TreeNodeId == domainEvent.TreeNodeId.ToString());
+
+            if (treeNode != null) item.Type = treeNode.ControllerName;
+
             workflowItemRepository.Update(item);
         }
 
@@ -58,13 +68,6 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
         {
             var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
             item.LastModifyDate = domainEvent.DateTime;
-            workflowItemRepository.Update(item);
-        }
-
-        public void Handle(PageTypeSetEvent domainEvent)
-        {
-            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
-            item.Type = domainEvent.Type.ToString();
             workflowItemRepository.Update(item);
         }
     }

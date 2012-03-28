@@ -129,6 +129,10 @@
       <Project>{9F36EE92-6F9A-4C57-AA4B-81328423D0DA}</Project>
       <Name>Bennington.ContentTree.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bennington.ContentTree\Bennington.ContentTree.csproj">
+      <Project>{97981EC9-A1C5-460E-9244-9D5C9169E47F}</Project>
+      <Name>Bennington.ContentTree</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bennington.Core\Bennington.Core.csproj">
       <Project>{AAB424EE-5CFA-42BE-9F9A-2350C5C8E715}</Project>
       <Name>Bennington.Core</Name>
