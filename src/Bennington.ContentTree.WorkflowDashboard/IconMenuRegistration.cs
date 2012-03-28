@@ -1,6 +1,6 @@
 ﻿using Bennington.Cms.MenuSystem;
 
-namespace Bennington.Cms.PrincipalProvider
+namespace Bennington.ContentTree.WorkflowDashboard
 {
     public class MenuSystemConfigurer : IMenuSystemConfigurer
     {
