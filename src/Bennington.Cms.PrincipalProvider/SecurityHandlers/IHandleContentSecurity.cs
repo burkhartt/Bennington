@@ -106,7 +106,7 @@ namespace Bennington.Cms.PrincipalProvider.SecurityHandlers
         {
             var currentTreeNode = treeNodes.FirstOrDefault(x => x.TreeNodeId == treeNodeId);
 
-            return currentTreeNode.ParentTreeNodeId == Guid.Empty.ToString() ? treeNodeId : GetTopLevelContentTreeSectionId(treeNodes, currentTreeNode.ParentTreeNodeId);
+            return currentTreeNode == null || currentTreeNode.ParentTreeNodeId == Guid.Empty.ToString() ? treeNodeId : GetTopLevelContentTreeSectionId(treeNodes, currentTreeNode.ParentTreeNodeId);
         }
 
         private static bool TheRoleDoesNotHaveAccessToThisContentTreeSectionNode(ContentTreeSectionNode contentTreeSectionNode, Role role)
