@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using Bennington.Cms.PrincipalProvider.Context;
 using Bennington.Cms.PrincipalProvider.Helpers;
 using Bennington.Cms.PrincipalProvider.Models;
 using Bennington.Cms.PrincipalProvider.Repositories;
@@ -22,18 +23,21 @@ namespace Bennington.Cms.PrincipalProvider.SecurityHandlers
         private readonly ICurrentUserContext currentUserContext;
         private readonly IModuleRepository moduleRepository;
         private readonly IGetTheNotAuthorizedPage getTheNotAuthorizedPage;
+        private readonly ISuperUserContext superUserContext;
 
         public HandleModuleSecurity(IUserRepository userRepository,
             IRoleRepository roleRepository,
             ICurrentUserContext currentUserContext,
             IModuleRepository moduleRepository,
-            IGetTheNotAuthorizedPage getTheNotAuthorizedPage)
+            IGetTheNotAuthorizedPage getTheNotAuthorizedPage,
+            ISuperUserContext superUserContext)
         {
             this.userRepository = userRepository;
             this.roleRepository = roleRepository;
             this.currentUserContext = currentUserContext;
             this.moduleRepository = moduleRepository;
             this.getTheNotAuthorizedPage = getTheNotAuthorizedPage;
+            this.superUserContext = superUserContext;
         }
 
         public void HandleSecurityForThisRequest(HttpApplication app, EventArgs eventArgs)
@@ -42,7 +46,7 @@ namespace Bennington.Cms.PrincipalProvider.SecurityHandlers
             var controller = (routeData.Values["controller"] ?? string.Empty).ToString();
             var currentPrincipal = currentUserContext.GetCurrentPrincipal();
 
-            if (currentPrincipal != null && currentPrincipal.Identity.Name.Equals("admin", StringComparison.InvariantCultureIgnoreCase)) return;
+            if (currentPrincipal != null && superUserContext.IsSuperUser()) return;
 
             if (TheControllerRequiresAuthentication(controller))
             {
