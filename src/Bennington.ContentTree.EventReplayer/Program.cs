@@ -17,6 +17,7 @@ using Bennington.ContentTree.Providers.SectionNodeProvider;
 using Bennington.ContentTree.Providers.SectionNodeProvider.Denormalizers;
 using Bennington.ContentTree.Providers.ToolLinkNodeProvider;
 using Bennington.ContentTree.Repositories;
+using Bennington.ContentTree.WorkflowDashboard.Denormalizers;
 using Bennington.Core;
 using Bennington.Core.Helpers;
 using SimpleCqrs;
@@ -71,10 +72,11 @@ namespace Bennington.ContentTreeEventReplayer
         {
             return new List<Type>()
                        {
-                           typeof(TreeNodeDenormalizer), 
-                           typeof (ContentNodeProviderDraftDenormalizer),
-                           typeof(ContentNodeProviderPublishDenormalizer),
-                           typeof(SectionNodeProviderDraftDenormalizer),
+                           //typeof(TreeNodeDenormalizer), 
+                           //typeof (ContentNodeProviderDraftDenormalizer),
+                           //typeof(ContentNodeProviderPublishDenormalizer),
+                           //typeof(SectionNodeProviderDraftDenormalizer),
+                           typeof(WorkflowDenormalizer),
                            //typeof(ContentRoutingDenormalizer),
                            //typeof(SectionRoutingDenormalizer),
                        };

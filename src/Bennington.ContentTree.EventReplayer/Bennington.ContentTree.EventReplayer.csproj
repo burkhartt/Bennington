@@ -108,6 +108,10 @@
       <Project>{BD01E5D0-D160-4E39-B18B-61D2B375977B}</Project>
       <Name>Bennington.ContentTree.Providers.ToolLinkNodeProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bennington.ContentTree.WorkflowDashboard\Bennington.ContentTree.WorkflowDashboard.csproj">
+      <Project>{B5069FD2-FF97-4641-A75E-0470DDA34289}</Project>
+      <Name>Bennington.ContentTree.WorkflowDashboard</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bennington.ContentTree\Bennington.ContentTree.csproj">
       <Project>{97981EC9-A1C5-460E-9244-9D5C9169E47F}</Project>
       <Name>Bennington.ContentTree</Name>
