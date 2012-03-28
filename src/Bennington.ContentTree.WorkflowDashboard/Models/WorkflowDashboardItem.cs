@@ -10,7 +10,6 @@ namespace Bennington.ContentTree.WorkflowDashboard.Models
  
         public string Type { get; set; }
 
-        [Hidden]
         public string Status { get; set; }        
 
         [Hidden]

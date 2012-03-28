@@ -139,7 +139,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\WorkflowDashboard\Buttons.cshtml" />
+    <EmbeddedResource Include="Views\WorkflowDashboard\Index\Buttons.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\WorkflowDashboard\CellTemplates\Name.cshtml" />
