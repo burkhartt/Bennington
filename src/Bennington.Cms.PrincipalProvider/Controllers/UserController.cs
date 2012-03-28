@@ -55,6 +55,7 @@ namespace Bennington.Cms.PrincipalProvider.Controllers
         {
             return new[]
                        {
+                           new SelectListItem { Text = "", Value = ""},
                            new SelectListItem {Text = "Publisher", Value = "Publisher"},
                            new SelectListItem {Text = "Author", Value = "Author"}
                        };

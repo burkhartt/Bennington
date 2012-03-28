@@ -4,6 +4,7 @@ using Bennington.ContentTree.Domain.Events;
 using Bennington.ContentTree.Domain.Events.Page;
 using Bennington.ContentTree.Domain.Events.TreeNode;
 using Bennington.ContentTree.Repositories;
+using Bennington.ContentTree.WorkflowDashboard.Models;
 using Bennington.ContentTree.WorkflowDashboard.Repositories;
 using SimpleCqrs.Eventing;
 
@@ -28,9 +29,15 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
 
         public void Handle(PageWorkflowStatusSetEvent domainEvent)
         {
-            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
+            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId) ?? CreatePageAndReturnIt(domainEvent.AggregateRootId);
             item.Status = domainEvent.Status;
             workflowItemRepository.Update(item);
+        }
+
+        private WorkflowItem CreatePageAndReturnIt(Guid aggregateRootId)
+        {
+            workflowItemRepository.Create(aggregateRootId);
+            return workflowItemRepository.GetById(aggregateRootId);
         }
 
         public void Handle(PageCreatedEvent domainEvent)
@@ -40,14 +47,14 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
 
         public void Handle(PageNameSetEvent domainEvent)
         {
-            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
+            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId) ?? CreatePageAndReturnIt(domainEvent.AggregateRootId);
             item.Name = domainEvent.Name;
             workflowItemRepository.Update(item);
         }
 
         public void Handle(PageTreeNodeIdSetEvent domainEvent)
         {
-            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
+            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId) ?? CreatePageAndReturnIt(domainEvent.AggregateRootId);
             item.TreeNodeId = domainEvent.TreeNodeId;
 
             var treeNode = treeNodeRepository.GetAll().First(x => x.TreeNodeId == domainEvent.TreeNodeId.ToString());
@@ -59,14 +66,14 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
 
         public void Handle(PageLastModifyBySetEvent domainEvent)
         {
-            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
+            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId) ?? CreatePageAndReturnIt(domainEvent.AggregateRootId);
             item.LastModifiedBy = domainEvent.LastModifyBy;
             workflowItemRepository.Update(item);
         }
 
         public void Handle(PageLastModifyDateSetEvent domainEvent)
         {
-            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId);
+            var item = workflowItemRepository.GetById(domainEvent.AggregateRootId) ?? CreatePageAndReturnIt(domainEvent.AggregateRootId);
             item.LastModifyDate = domainEvent.DateTime;
             workflowItemRepository.Update(item);
         }

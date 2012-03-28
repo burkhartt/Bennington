@@ -1,4 +1,6 @@
-﻿namespace Bennington.ContentTree.Providers.ContentNodeProvider.Models
+﻿using System;
+
+namespace Bennington.ContentTree.Providers.ContentNodeProvider.Models
 {
 	public class ModifyViewModel
 	{

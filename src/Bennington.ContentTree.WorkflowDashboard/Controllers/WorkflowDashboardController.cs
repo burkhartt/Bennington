@@ -20,7 +20,7 @@ namespace Bennington.ContentTree.WorkflowDashboard.Controllers
 
         protected override IQueryable<WorkflowDashboardItem> GetListItems(Core.List.ListViewModel listViewModel)
         {
-            return workflowItemRepository.GetAll().Select(x => new WorkflowDashboardItem
+            return workflowItemRepository.GetAll().Where(x => x.Status != "Active").Select(x => new WorkflowDashboardItem
                                                                    {
                                                                        Id = x.Id,
                                                                        Name = x.Name,

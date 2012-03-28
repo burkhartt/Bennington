@@ -18,7 +18,8 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
 {
 	public class ContentTreeNodeController : Controller
 	{
-		private readonly IContentTreeNodeToContentTreeNodeInputModelMapper contentTreeNodeToContentTreeNodeInputModelMapper;
+	    public ICurrentUserContext CurrentUserContext { get; set; }
+	    private readonly IContentTreeNodeToContentTreeNodeInputModelMapper contentTreeNodeToContentTreeNodeInputModelMapper;
         private readonly IContentTreePageNodeContext contentTreePageNodeContext;
 		private readonly ITreeNodeRepository treeNodeRepository;
 		private readonly IContentTreeNodeProviderContext contentTreeNodeProviderContext;
@@ -46,6 +47,7 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
                                             IContentTree contentTree,
                                             IContentTreeNodeMetaInformationViewModelBuilder contentTreeNodeMetaInformationViewModelBuilder)
 		{
+	        CurrentUserContext = currentUserContext;
 	        this.contentTreeNodeMetaInformationViewModelBuilder = contentTreeNodeMetaInformationViewModelBuilder;
 	        this.contentTree = contentTree;
 	        this.getUrlOfFrontSideWebsite = getUrlOfFrontSideWebsite;

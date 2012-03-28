@@ -7,10 +7,10 @@
 @using MvcTurbine.ComponentModel
 @using Bennington.Cms.PrincipalProvider.Repositories
 
-@*@{    
-    var currentPrincipal = ServiceLocatorManager.Current.Resolve<ICurrentUserContext>().GetCurrentPrincipal();
-    var userRepository = ServiceLocatorManager.Current.Resolve<IUserRepository>();
-    var user = userRepository.GetAll().FirstOrDefault(x => x.Username == currentPrincipal.Identity.Name);    
+@*@{  
+    var currentUserContext = ServiceLocatorManager.Current.Resolve<ICurrentUserContext>();
+    var determineWhoHasTheAbilityToPublish = ServiceLocatorManager.Current.Resolve<IDetermineIfThisUserCanPublish>();
+    var canPublish = determineWhoHasTheAbilityToPublish.DetermineIfThisUserCanPublish(currentUserContext.GetCurrentPrincipal().Identity.Name);
 }*@
 @{ Html.RenderAction("ContentItemNavigation", "ContentTreeNode", new { TreeNodeId = Model.ContentTreeNodeInputModel.TreeNodeId }); }
 
