@@ -24,5 +24,7 @@ namespace Bennington.ContentTree.Domain.Commands
 			set { AggregateRootId = value; }
 		}
 		public Guid TreeNodeId { get; set; }
+
+	    public bool IsNew { get; set; }
 	}
 }

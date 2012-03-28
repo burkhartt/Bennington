@@ -11,6 +11,7 @@ namespace Bennington.ContentTree.Domain.CommandHandlers
 		{
 			page.PageId = command.AggregateRootId;
             page.SetWorkflowStatus(command.WorkflowStatus);
+            page.SetIsNew(command.IsNew);
 			page.SetBody(command.Body);
 			page.SetName(command.Name);
 			page.SetHeaderText(command.HeaderText);

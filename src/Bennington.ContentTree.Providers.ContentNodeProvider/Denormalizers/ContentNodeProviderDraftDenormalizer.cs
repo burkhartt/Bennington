@@ -27,7 +27,8 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
 														IHandleDomainEvents<PageInactiveSetEvent>,
                                                         IHandleDomainEvents<PageLastModifyBySetEvent>,
                                                         IHandleDomainEvents<PageLastModifyDateSetEvent>,
-        IHandleDomainEvents<PageWorkflowStatusSetEvent>
+        IHandleDomainEvents<PageWorkflowStatusSetEvent>,
+        IHandleDomainEvents<PageIsNewSetEvent>
 	{
 		private readonly IContentNodeProviderDraftRepository contentNodeProviderDraftRepository;
 
@@ -167,6 +168,13 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
 	    {
             var contentNodeProviderDraft = GetContentNodeProviderDraft(domainEvent);
             contentNodeProviderDraft.WorkflowStatus = domainEvent.Status;
+            contentNodeProviderDraftRepository.Update(contentNodeProviderDraft);
+	    }
+
+	    public void Handle(PageIsNewSetEvent domainEvent)
+	    {
+            var contentNodeProviderDraft = GetContentNodeProviderDraft(domainEvent);
+            contentNodeProviderDraft.IsNew = domainEvent.IsNew;
             contentNodeProviderDraftRepository.Update(contentNodeProviderDraft);
 	    }
 	}

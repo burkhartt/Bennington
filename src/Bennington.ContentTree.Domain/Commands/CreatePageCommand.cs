@@ -28,5 +28,7 @@ namespace Bennington.ContentTree.Domain.Commands
 		}
 
 	    public string WorkflowStatus { get; set; }
+
+	    public bool IsNew { get; set; }
 	}
 }

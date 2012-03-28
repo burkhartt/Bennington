@@ -20,5 +20,7 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Models
         public string MetaDescription { get; set; }
         public string MetaKeywords { get; set; }
         public string WorkflowStatus { get; set; }
+
+	    public bool IsNew { get; set; }
 	}
 }

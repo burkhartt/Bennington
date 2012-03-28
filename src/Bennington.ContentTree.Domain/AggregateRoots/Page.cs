@@ -43,6 +43,11 @@ namespace Bennington.ContentTree.Domain.AggregateRoots
             Apply(new PageWorkflowStatusSetEvent { AggregateRootId = Id, Status = status});
         }
 
+        public void SetIsNew(bool isNew)
+        {
+            Apply(new PageIsNewSetEvent { AggregateRootId = Id, IsNew = isNew});
+        }
+
 		public void SetHidden(bool hidden)
 		{
 			Apply(new PageHiddenSetEvent() { Hidden = hidden });

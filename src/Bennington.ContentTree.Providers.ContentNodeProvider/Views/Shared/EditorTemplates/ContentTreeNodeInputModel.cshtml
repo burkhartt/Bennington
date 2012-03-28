@@ -84,3 +84,10 @@
         @Html.DropDownListFor(model => model.WorkflowStatus, Model.WorkflowStatuses)
         @Html.ValidationMessageFor(model => model.WorkflowStatus)
     </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IsNew)
+    </div>
+    <div class="editor-label">
+        @Html.CheckBoxFor(model => model.IsNew)
+        @Html.ValidationMessageFor(model => model.IsNew)
+    </div>

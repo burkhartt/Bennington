@@ -106,7 +106,8 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
 									Inactive = contentTreeNodeInputModel.Inactive,
 									Hidden = contentTreeNodeInputModel.Hidden,
                                     LastModifyBy = currentUserContext.GetCurrentPrincipal().Identity.Name,
-                                    WorkflowStatus = contentTreeNodeInputModel.WorkflowStatus
+                                    WorkflowStatus = contentTreeNodeInputModel.WorkflowStatus,
+                                    IsNew = contentTreeNodeInputModel.IsNew
 			                	});
 
 			if (!string.IsNullOrEmpty(contentTreeNodeInputModel.FormAction))
@@ -180,7 +181,8 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
 					Inactive = contentTreeNodeInputModel.Inactive,
                     LastModifyBy = currentUserContext.GetCurrentPrincipal().Identity.Name,
                     ControllerName = contentTreeNodeInputModel.ControllerName,
-                    WorkflowStatus = contentTreeNodeInputModel.WorkflowStatus
+                    WorkflowStatus = contentTreeNodeInputModel.WorkflowStatus,
+                    IsNew = contentTreeNodeInputModel.IsNew
 				};
 				commandBus.Send(modifyPageComand);
 			} else {
@@ -197,7 +199,8 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
 										Hidden = contentTreeNodeInputModel.Hidden,
 										Inactive = contentTreeNodeInputModel.Inactive,
                                         LastModifyBy = currentUserContext.GetCurrentPrincipal().Identity.Name,
-                                        WorkflowStatus = contentTreeNodeInputModel.WorkflowStatus
+                                        WorkflowStatus = contentTreeNodeInputModel.WorkflowStatus,
+                                        IsNew = contentTreeNodeInputModel.IsNew
 				                	});
 			}
 
@@ -253,6 +256,7 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
                 if (viewModel.ContentTreeNodeInputModel.WorkflowStatuses.Count(x => x.Value == contentTreeNode.WorkflowStatus) > 0)
                     viewModel.ContentTreeNodeInputModel.WorkflowStatuses.First(x => x.Value == contentTreeNode.WorkflowStatus).Selected = true;
                 viewModel.ContentTreeNodeInputModel.WorkflowStatus = contentTreeNode.WorkflowStatus;
+                viewModel.ContentTreeNodeInputModel.IsNew = contentTreeNode.IsNew;
             }
 
 		    viewModel.Url = string.Format("{0}{1}", getUrlOfFrontSideWebsite.GetUrlOfFrontSide(), treeNodeIdToUrl.GetUrlByTreeNodeId(treeNodeId));

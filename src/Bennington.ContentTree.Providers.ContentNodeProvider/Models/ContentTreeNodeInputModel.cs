@@ -58,5 +58,8 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Models
 
         [DisplayName("Workflow Status")]
         public IEnumerable<SelectListItem> WorkflowStatuses { get; set; }
+
+        [DisplayName("New?")]
+	    public bool IsNew { get; set; }
 	}
 }

@@ -21,5 +21,6 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Data
         public DateTime LastModifyDate { get; set; }
         public string LastModifyBy { get; set; }
         public string WorkflowStatus { get; set; }
+        public bool IsNew { get; set; }
 	}
 }
