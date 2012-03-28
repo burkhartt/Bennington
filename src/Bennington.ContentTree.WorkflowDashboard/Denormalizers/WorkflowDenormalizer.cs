@@ -57,7 +57,7 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
             var item = workflowItemRepository.GetById(domainEvent.AggregateRootId) ?? CreatePageAndReturnIt(domainEvent.AggregateRootId);
             item.TreeNodeId = domainEvent.TreeNodeId;
 
-            var treeNode = treeNodeRepository.GetAll().First(x => x.TreeNodeId == domainEvent.TreeNodeId.ToString());
+            var treeNode = treeNodeRepository.GetAll().FirstOrDefault(x => x.TreeNodeId == domainEvent.TreeNodeId.ToString());
 
             if (treeNode != null) item.Type = treeNode.ControllerName;
 
@@ -75,6 +75,8 @@ namespace Bennington.ContentTree.WorkflowDashboard.Denormalizers
         {
             var item = workflowItemRepository.GetById(domainEvent.AggregateRootId) ?? CreatePageAndReturnIt(domainEvent.AggregateRootId);
             item.LastModifyDate = domainEvent.DateTime;
+            var treeNode = treeNodeRepository.GetAll().FirstOrDefault(x => x.TreeNodeId == item.TreeNodeId.ToString());
+            item.Type = treeNode.ControllerName != "ContentTree" ? treeNode.ControllerName : "Page";
             workflowItemRepository.Update(item);
         }
     }

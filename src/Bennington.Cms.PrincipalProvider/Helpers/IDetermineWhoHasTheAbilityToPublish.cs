@@ -1,13 +1,9 @@
 ﻿using System.Linq;
 using Bennington.Cms.PrincipalProvider.Repositories;
+using Bennington.ContentTree.Providers.ContentNodeProvider.Helpers;
 
 namespace Bennington.Cms.PrincipalProvider.Helpers
 {
-    public interface IDetermineWhoHasTheAbilityToPublish
-    {
-        bool DetermineIfThisUserCanPublish(string username);
-    }
-
     public class DetermineWhoHasTheAbilityToPublish : IDetermineWhoHasTheAbilityToPublish
     {
         private readonly IUserRepository userRepository;
@@ -20,7 +16,7 @@ namespace Bennington.Cms.PrincipalProvider.Helpers
         public bool DetermineIfThisUserCanPublish(string username)
         {
             var user = userRepository.GetAll().FirstOrDefault(x => x.Username == username);
-            return user.UserType == "Publish";
+            return user.UserType == "Publisher";
         }
     }
 }

@@ -95,6 +95,7 @@
     <Compile Include="EngineTreeNodeProvider.cs" />
     <Compile Include="Helpers\ContentTreeNodeFileUploadPersister.cs" />
     <Compile Include="Helpers\GetPathToContentTreeNodeProviderFileUploads.cs" />
+    <Compile Include="Helpers\IDetermineWhoHasTheAbilityToPublish.cs" />
     <Compile Include="Mappers\ContentNodeProviderDraftToContentNodeProviderPublishedVersionMapper.cs" />
     <Compile Include="Mappers\ContentNodeProviderDraftToContentTreeNodeMapper.cs" />
     <Compile Include="Mappers\ContentNodeProviderPublishedVersionToContentTreeNodeMapper.cs" />

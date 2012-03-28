@@ -1,4 +1,5 @@
 ﻿using Bennington.Cms.PrincipalProvider.Helpers;
+using Bennington.ContentTree.Providers.ContentNodeProvider.Helpers;
 using MvcTurbine.ComponentModel;
 
 namespace Bennington.Cms.PrincipalProvider.Registration
