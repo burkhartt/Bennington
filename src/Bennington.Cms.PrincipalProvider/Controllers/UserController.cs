@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Bennington.Cms.Controllers;
 using Bennington.Cms.PrincipalProvider.Mappers;
@@ -44,8 +46,18 @@ namespace Bennington.Cms.PrincipalProvider.Controllers
                                                                                                          Text = x.Name,
                                                                                                          Value = x.Id
                                                                                                      }).OrderBy(x => x.Text);
+            form.UserTypes = GetUserTypes();
 
             return form;
+        }
+
+        private static IEnumerable<SelectListItem> GetUserTypes()
+        {
+            return new[]
+                       {
+                           new SelectListItem {Text = "Publisher", Value = "Publisher"},
+                           new SelectListItem {Text = "Author", Value = "Author"}
+                       };
         }
 
         public override UserInputModel GetFormById(object id)
@@ -56,6 +68,7 @@ namespace Bennington.Cms.PrincipalProvider.Controllers
                                                                                                          Text = x.Name,
                                                                                                          Value = x.Id
                                                                                                      }).OrderBy(x => x.Text);
+            form.UserTypes = GetUserTypes();
 
             return form;
         }

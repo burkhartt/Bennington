@@ -30,5 +30,8 @@ namespace Bennington.Cms.PrincipalProvider.Models
 
         [Hidden]
         public string Role { get; set; }
+
+        [Hidden]
+        public string UserType { get; set; }
 	}
 }

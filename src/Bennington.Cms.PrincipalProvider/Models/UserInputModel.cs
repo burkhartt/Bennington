@@ -29,5 +29,10 @@ namespace Bennington.Cms.PrincipalProvider.Models
         public IEnumerable<SelectListItem> Roles { get; set; }
 
         public string Role { get; set; }
+
+        [DisplayName("User Type")]
+        public IEnumerable<SelectListItem> UserTypes { get; set; }
+
+        public string UserType { get; set; }
 	}
 }

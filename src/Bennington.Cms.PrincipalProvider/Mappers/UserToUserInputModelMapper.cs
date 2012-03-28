@@ -20,7 +20,7 @@ namespace Bennington.Cms.PrincipalProvider.Mappers
 					.ForMember(a => a.Password, b => b.Ignore())
 					.ForMember(a => a.ConfirmPassword, b => b.Ignore())
                     .ForMember(a => a.Roles, b => b.Ignore())
-				;
+                    .ForMember(a => a.UserTypes, b => b.Ignore());
 		}
 	}
 }
