@@ -83,6 +83,7 @@
     <Compile Include="Controllers\ListManageController.cs" />
     <Compile Include="Helpers\SlugGenerator.cs" />
     <Compile Include="Helpers\ValidationSummaryHelpers.cs" />
+    <Compile Include="IconMenuRegistration.cs" />
     <Compile Include="List\CmsListViewModelOptions.cs" />
     <Compile Include="MenuSystem\ActionIconMenuItem.cs" />
     <Compile Include="MenuSystem\ActionSubMenuItem.cs" />
@@ -187,6 +188,7 @@
     <EmbeddedResource Include="Scripts\HtmlEditor\tiny_mce\jquery_tinymce.js" />
     <EmbeddedResource Include="Scripts\HtmlEditor\tiny_mce\langs\en.js" />
     <EmbeddedResource Include="Scripts\HtmlEditor\tiny_mce\license.txt" />
+    <EmbeddedResource Include="Content\canvas\lock.png" />
     <Content Include="Scripts\HtmlEditor\tiny_mce\plugins\advhr\css\advhr.css" />
     <Content Include="Scripts\HtmlEditor\tiny_mce\plugins\advhr\editor_plugin.js" />
     <Content Include="Scripts\HtmlEditor\tiny_mce\plugins\advhr\editor_plugin_src.js" />
