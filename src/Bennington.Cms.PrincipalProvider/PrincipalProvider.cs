@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System.Configuration;
+using System.Linq;
 using System.Security.Principal;
+using System.Web;
+using System.Web.Configuration;
+using System.Web.SessionState;
 using Bennington.Cms.PrincipalProvider.Encryption;
 using Bennington.Cms.PrincipalProvider.Repositories;
 using MvcTurbine.MembershipProvider;
@@ -45,7 +49,7 @@ namespace Bennington.Cms.PrincipalProvider
             return new TicketData
                        {
                            IsPersistent = true,
-                           NumberOfMinutesUntilExpiration = 15,
+                           NumberOfMinutesUntilExpiration = HttpContext.Current.Session.Timeout,
                            Username = principal.Identity.Name
                        };
         }
