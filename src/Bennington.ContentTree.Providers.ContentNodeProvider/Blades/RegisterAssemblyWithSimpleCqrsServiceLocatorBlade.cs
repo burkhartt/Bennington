@@ -4,6 +4,7 @@ using Bennington.ContentTree.Providers.ContentNodeProvider.Mappers;
 using Bennington.ContentTree.Providers.ContentNodeProvider.Repositories;
 using Bennington.Core;
 using Bennington.Core.Helpers;
+using Bennington.Repository.Helpers;
 using MvcTurbine;
 using MvcTurbine.Blades;
 using SimpleCqrs;
@@ -41,6 +42,10 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Blades
 			simpleCqrsServiceLocator.Register(context.ServiceLocator.Resolve<IContentTreeNodeProviderContext>());
 			simpleCqrsServiceLocator.Register(context.ServiceLocator.Resolve<IFileSystem>());
             simpleCqrsServiceLocator.Register(context.ServiceLocator.Resolve<ContentRoutingDenormalizer>);
+		    simpleCqrsServiceLocator.Register<IGetDataPathForType, GetDataPathForType>();
+		    simpleCqrsServiceLocator.Register<IGetValueOfIdPropertyForInstance, GetValueOfIdPropertyForInstance>();
+            simpleCqrsServiceLocator.Register<IGetNameOfIdPropertyForType, GetNameOfIdPropertyForType>();
+            simpleCqrsServiceLocator.Register<IGuidGetter, GuidGetter>();
 		}
 	}
 }

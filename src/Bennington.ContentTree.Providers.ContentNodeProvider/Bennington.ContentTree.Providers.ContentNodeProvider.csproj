@@ -86,6 +86,7 @@
     <Compile Include="Controllers\ContentTreeController.cs" />
     <Compile Include="Controllers\ContentTreeNodeController.cs" />
     <Compile Include="Data\ContentNodeProviderDraft.cs" />
+    <Compile Include="Data\ContentNodeProviderLastPublishedVersion.cs" />
     <Compile Include="Data\ContentNodeProviderPublishedVersion.cs" />
     <Compile Include="Data\DataModelDataContext.cs" />
     <Compile Include="Denormalizers\ContentNodeProviderDraftDenormalizer.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Registration\TreeNodeExtensionProviderRegistration.cs" />
     <Compile Include="ContentNodeProvider.cs" />
     <Compile Include="ContentTreePageNodeContext.cs" />
+    <Compile Include="Repositories\IContentNodeProviderLastPublishedVersionRepository.cs" />
     <Compile Include="Routing\ContentControllerDisplayRouteRegistrator.cs" />
     <Compile Include="Routing\ContentTreeRouteRegistrator.cs" />
     <Compile Include="Validation\ContentTreeInputModelValidator.cs" />
@@ -173,6 +175,10 @@
     <ProjectReference Include="..\Bennington.FileUploadHandling\Bennington.FileUploadHandling.csproj">
       <Project>{8884EEF3-2BF6-4F75-B6ED-0EFC6C7D15AA}</Project>
       <Name>Bennington.FileUploadHandling</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bennington.Repository\Bennington.Repository.csproj">
+      <Project>{C46BBBB8-68BF-4A57-BE88-0734B26CD51C}</Project>
+      <Name>Bennington.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

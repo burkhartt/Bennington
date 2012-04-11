@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Bennington.ContentTree.Domain.Events.Page;
+using Bennington.ContentTree.Providers.ContentNodeProvider.Data;
 using Bennington.ContentTree.Providers.ContentNodeProvider.Mappers;
 using Bennington.ContentTree.Providers.ContentNodeProvider.Repositories;
 using Bennington.Core.Helpers;
@@ -13,19 +15,50 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
 		private readonly IContentNodeProviderPublishedVersionRepository contentNodeProviderPublishedVersionRepository;
 		private readonly IContentNodeProviderDraftToContentNodeProviderPublishedVersionMapper contentNodeProviderDraftToContentNodeProviderPublishedVersionMapper;
 		private readonly IContentNodeProviderDraftRepository contentNodeProviderDraftRepository;
+        private readonly ContentNodeProviderLastPublishedVersionRepository contentNodeProviderLastPublishedVersionRepository;
 
-		public ContentNodeProviderPublishDenormalizer(IContentNodeProviderPublishedVersionRepository contentNodeProviderPublishedVersionRepository,
+	    public ContentNodeProviderPublishDenormalizer(IContentNodeProviderPublishedVersionRepository contentNodeProviderPublishedVersionRepository,
 			IContentNodeProviderDraftToContentNodeProviderPublishedVersionMapper contentNodeProviderDraftToContentNodeProviderPublishedVersionMapper,
-			IContentNodeProviderDraftRepository contentNodeProviderDraftRepository)
+			IContentNodeProviderDraftRepository contentNodeProviderDraftRepository,
+            ContentNodeProviderLastPublishedVersionRepository contentNodeProviderLastPublishedVersionRepository)
 		{
 			this.contentNodeProviderDraftRepository = contentNodeProviderDraftRepository;
-			this.contentNodeProviderDraftToContentNodeProviderPublishedVersionMapper = contentNodeProviderDraftToContentNodeProviderPublishedVersionMapper;
+		    this.contentNodeProviderLastPublishedVersionRepository = contentNodeProviderLastPublishedVersionRepository;
+		    this.contentNodeProviderDraftToContentNodeProviderPublishedVersionMapper = contentNodeProviderDraftToContentNodeProviderPublishedVersionMapper;
 			this.contentNodeProviderPublishedVersionRepository = contentNodeProviderPublishedVersionRepository;
 		}
 
 		public void Handle(PagePublishedEvent domainEvent)
 		{
-            var contentNodeProviderDrafts = contentNodeProviderDraftRepository.GetAllContentNodeProviderDrafts().ToArray();
+		    var pageToPublish = contentNodeProviderPublishedVersionRepository.GetAllContentNodeProviderPublishedVersions().FirstOrDefault(x => x.PageId == domainEvent.AggregateRootId.ToString());
+            if (pageToPublish != null)
+            {
+                contentNodeProviderLastPublishedVersionRepository.Delete(pageToPublish.PageId);
+                contentNodeProviderLastPublishedVersionRepository.SaveAndReturnId(new ContentNodeProviderLastPublishedVersion
+                                                                                      {
+                                                                                          Id = Guid.NewGuid(),
+                                                                                          Action = pageToPublish.Action,
+                                                                                          Body = pageToPublish.Body,
+                                                                                          HeaderImage = pageToPublish.HeaderImage,
+                                                                                          HeaderText = pageToPublish.HeaderText,
+                                                                                          Hidden = pageToPublish.Hidden,
+                                                                                          Inactive = pageToPublish.Inactive,
+                                                                                          IsNew = pageToPublish.IsNew,
+                                                                                          LastModifyBy = pageToPublish.LastModifyBy,
+                                                                                          LastModifyDate = pageToPublish.LastModifyDate,
+                                                                                          MetaDescription = pageToPublish.MetaDescription,
+                                                                                          MetaKeywords = pageToPublish.MetaKeywords,
+                                                                                          MetaTitle = pageToPublish.MetaTitle,
+                                                                                          Name = pageToPublish.Name,
+                                                                                          PageId = pageToPublish.PageId,
+                                                                                          Sequence = pageToPublish.Sequence,
+                                                                                          TreeNodeId = pageToPublish.TreeNodeId,
+                                                                                          UrlSegment = pageToPublish.UrlSegment,
+                                                                                          WorkflowStatus = pageToPublish.WorkflowStatus
+                                                                                      });
+            }
+
+		    var contentNodeProviderDrafts = contentNodeProviderDraftRepository.GetAllContentNodeProviderDrafts().ToArray();
 			var draftVersion = contentNodeProviderDrafts.Where(a => a.PageId == domainEvent.AggregateRootId.ToString()).FirstOrDefault();
 			if (draftVersion == null) return;
 
@@ -60,5 +93,5 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
 			if (item != null)
 				contentNodeProviderPublishedVersionRepository.Delete(item);
 		}
-	}
+	}    
 }
