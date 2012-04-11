@@ -63,9 +63,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\ModifyPageMetaInformationCommandHandler.cs" />
+    <Compile Include="CommandHandlers\RevertPageCommandHandler.cs" />
     <Compile Include="Commands\ModifyPageMetaInformationCommand.cs" />
+    <Compile Include="Commands\RevertPageCommand.cs" />
     <Compile Include="Events\PageIsNewSetEvent.cs" />
     <Compile Include="Events\PageWorkflowStatusSetEvent.cs" />
+    <Compile Include="Events\Page\PageRevertedEvent.cs" />
     <Compile Include="Events\Section\SectionLastModifyDateSetEvent.cs" />
     <Compile Include="Events\Section\SectionLastModifyBySetEvent.cs" />
     <Compile Include="Events\Page\PageLastModifyDateSetEvent.cs" />

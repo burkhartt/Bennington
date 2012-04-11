@@ -1,4 +1,5 @@
-﻿using Bennington.ContentTree.Domain.AggregateRoots;
+﻿using System;
+using Bennington.ContentTree.Domain.AggregateRoots;
 using Bennington.ContentTree.Domain.Commands;
 using SimpleCqrs.Commanding;
 using SimpleCqrs.Domain;

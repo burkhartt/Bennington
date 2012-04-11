@@ -32,12 +32,12 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
 	{
 		private readonly IContentNodeProviderDraftRepository contentNodeProviderDraftRepository;
 
-		public ContentNodeProviderDraftDenormalizer(IContentNodeProviderDraftRepository contentNodeProviderDraftRepository)
+	    public ContentNodeProviderDraftDenormalizer(IContentNodeProviderDraftRepository contentNodeProviderDraftRepository)
 		{
-			this.contentNodeProviderDraftRepository = contentNodeProviderDraftRepository;
+		    this.contentNodeProviderDraftRepository = contentNodeProviderDraftRepository;
 		}
 
-		public void Handle(PageCreatedEvent domainEvent)
+	    public void Handle(PageCreatedEvent domainEvent)
 		{
 			contentNodeProviderDraftRepository.Create(new ContentNodeProviderDraft()
 			                                          	{

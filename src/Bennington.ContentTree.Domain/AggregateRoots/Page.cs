@@ -1,6 +1,7 @@
 using System;
 using Bennington.ContentTree.Domain.Events;
 using Bennington.ContentTree.Domain.Events.Page;
+using SimpleCqrs.Eventing;
 
 namespace Bennington.ContentTree.Domain.AggregateRoots
 {
@@ -159,5 +160,13 @@ namespace Bennington.ContentTree.Domain.AggregateRoots
 	                      DateTime = now,
 	                  });
 	    }
-	}
+
+	    public void Revert()
+	    {
+	        Apply(new PageRevertedEvent
+	                  {
+	                      AggregateRootId = Id
+	                  });
+	    }
+	}    
 }

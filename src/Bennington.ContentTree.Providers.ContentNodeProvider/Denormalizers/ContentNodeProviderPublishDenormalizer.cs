@@ -10,7 +10,8 @@ using SimpleCqrs.Eventing;
 namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
 {
 	public class ContentNodeProviderPublishDenormalizer : IHandleDomainEvents<PagePublishedEvent>,
-															IHandleDomainEvents<PageDeletedEvent>
+															IHandleDomainEvents<PageDeletedEvent>,
+        IHandleDomainEvents<PageRevertedEvent>
 	{
 		private readonly IContentNodeProviderPublishedVersionRepository contentNodeProviderPublishedVersionRepository;
 		private readonly IContentNodeProviderDraftToContentNodeProviderPublishedVersionMapper contentNodeProviderDraftToContentNodeProviderPublishedVersionMapper;
@@ -36,7 +37,7 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
                 contentNodeProviderLastPublishedVersionRepository.Delete(pageToPublish.PageId);
                 contentNodeProviderLastPublishedVersionRepository.SaveAndReturnId(new ContentNodeProviderLastPublishedVersion
                                                                                       {
-                                                                                          Id = Guid.NewGuid(),
+                                                                                          Id = new Guid(pageToPublish.PageId),
                                                                                           Action = pageToPublish.Action,
                                                                                           Body = pageToPublish.Body,
                                                                                           HeaderImage = pageToPublish.HeaderImage,
@@ -93,5 +94,75 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Denormalizers
 			if (item != null)
 				contentNodeProviderPublishedVersionRepository.Delete(item);
 		}
+
+	    public void Handle(PageRevertedEvent domainEvent)
+	    {
+            var lastPublishedVersion = contentNodeProviderLastPublishedVersionRepository.GetById(domainEvent.AggregateRootId.ToString());
+
+            if (lastPublishedVersion != null)
+            {
+                contentNodeProviderPublishedVersionRepository.Update(new ContentNodeProviderPublishedVersion
+                                                                         {
+                                                                             Action = lastPublishedVersion.Action,
+                                                                             Body = lastPublishedVersion.Body,
+                                                                             HeaderImage =
+                                                                                 lastPublishedVersion.HeaderImage,
+                                                                             HeaderText =
+                                                                                 lastPublishedVersion.HeaderText,
+                                                                             Hidden = lastPublishedVersion.Hidden,
+                                                                             Inactive = lastPublishedVersion.Inactive,
+                                                                             IsNew = lastPublishedVersion.IsNew,
+                                                                             LastModifyBy =
+                                                                                 lastPublishedVersion.LastModifyBy,
+                                                                             LastModifyDate =
+                                                                                 lastPublishedVersion.LastModifyDate,
+                                                                             MetaDescription =
+                                                                                 lastPublishedVersion.MetaDescription,
+                                                                             MetaKeywords =
+                                                                                 lastPublishedVersion.MetaKeywords,
+                                                                             MetaTitle = lastPublishedVersion.MetaTitle,
+                                                                             Name = lastPublishedVersion.Name,
+                                                                             PageId = lastPublishedVersion.PageId,
+                                                                             Sequence = lastPublishedVersion.Sequence,
+                                                                             TreeNodeId =
+                                                                                 lastPublishedVersion.TreeNodeId,
+                                                                             UrlSegment =
+                                                                                 lastPublishedVersion.UrlSegment,
+                                                                             WorkflowStatus =
+                                                                                 lastPublishedVersion.WorkflowStatus
+                                                                         });
+
+                contentNodeProviderDraftRepository.Update(new ContentNodeProviderDraft
+                                                              {
+                                                                  Action = lastPublishedVersion.Action,
+                                                                  Body = lastPublishedVersion.Body,
+                                                                  HeaderImage =
+                                                                      lastPublishedVersion.HeaderImage,
+                                                                  HeaderText =
+                                                                      lastPublishedVersion.HeaderText,
+                                                                  Hidden = lastPublishedVersion.Hidden,
+                                                                  Inactive = lastPublishedVersion.Inactive,
+                                                                  IsNew = lastPublishedVersion.IsNew,
+                                                                  LastModifyBy =
+                                                                      lastPublishedVersion.LastModifyBy,
+                                                                  LastModifyDate =
+                                                                      lastPublishedVersion.LastModifyDate,
+                                                                  MetaDescription =
+                                                                      lastPublishedVersion.MetaDescription,
+                                                                  MetaKeywords =
+                                                                      lastPublishedVersion.MetaKeywords,
+                                                                  MetaTitle = lastPublishedVersion.MetaTitle,
+                                                                  Name = lastPublishedVersion.Name,
+                                                                  PageId = lastPublishedVersion.PageId,
+                                                                  Sequence = lastPublishedVersion.Sequence,
+                                                                  TreeNodeId =
+                                                                      lastPublishedVersion.TreeNodeId,
+                                                                  UrlSegment =
+                                                                      lastPublishedVersion.UrlSegment,
+                                                                  WorkflowStatus =
+                                                                      lastPublishedVersion.WorkflowStatus
+                                                              });
+            }
+	    }
 	}    
 }

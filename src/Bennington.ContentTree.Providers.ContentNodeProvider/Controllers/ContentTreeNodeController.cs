@@ -212,6 +212,12 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
 					                        PageId = new Guid(contentTreeNodeInputModel.PageId)
 				                        });
 
+            if ((!string.IsNullOrEmpty(contentTreeNodeInputModel.FormAction)) && (contentTreeNodeInputModel.FormAction.StartsWith("Revert")))
+                commandBus.Send(new RevertPageCommand
+                                    {
+                                        PageId = new Guid(contentTreeNodeInputModel.PageId)
+                                    });
+
 			if (!string.IsNullOrEmpty(contentTreeNodeInputModel.FormAction))
 			{
 				if (contentTreeNodeInputModel.FormAction.ToLower() == "save and exit" || contentTreeNodeInputModel.FormAction.ToLower() == "publish and exit")
@@ -318,5 +324,5 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
 			if ((viewModel.ContentTreeNodeContentItems == null) || (viewModel.ContentTreeNodeContentItems.Count() == 0)) return null;
 			return View("ContentItemNavigation", viewModel);
 		}
-	}
+	}    
 }

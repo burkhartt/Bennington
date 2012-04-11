@@ -40,10 +40,11 @@
 			<input type="button" class="button important" value="Delete" onclick="if (confirm('Are you sure you want to delete this item?')) { window.location='@Url.Action("Delete", "ContentTreeNode", new { treeNodeId = Model.ContentTreeNodeInputModel.TreeNodeId })'; }" />
 			 } 
 			@if ((ViewContext.RouteData.Values["Action"].ToString() == "Modify") && (!string.IsNullOrEmpty(Model.ContentTreeNodeInputModel.PageId)) && canPublish)
-            { 
+   { 
+            <input type="button" class="button" value="Revert" onclick="$('#ContentTreeNodeInputModel_FormAction').val(this.value);$('#form').submit();" />
 			<input type="button" class="button" value="Publish" onclick="$('#ContentTreeNodeInputModel_FormAction').val(this.value);$('#form').submit();" />
             <input type="button" class="button" value="Publish and Exit" onclick="$('#ContentTreeNodeInputModel_FormAction').val(this.value);$('#form').submit();" />
-            } 
+   } 
 		</div>
 	</div>
 
