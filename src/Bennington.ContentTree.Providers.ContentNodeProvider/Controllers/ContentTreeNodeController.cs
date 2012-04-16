@@ -160,7 +160,7 @@ namespace Bennington.ContentTree.Providers.ContentNodeProvider.Controllers
 		[ValidateInput(false)]
 		public virtual ActionResult Modify(ContentTreeNodeInputModel contentTreeNodeInputModel)
 		{
-			contentTreeNodeFileUploadPersister.SaveFilesByTreeNodeIdAndAction(contentTreeNodeInputModel.TreeNodeId, contentTreeNodeInputModel.Action);
+			contentTreeNodeFileUploadPersister.SaveFilesByTreeNodeIdAndAction(contentTreeNodeInputModel.TreeNodeId, contentTreeNodeInputModel.Action); 
 			if (ModelState.IsValid == false)
 				return View("Modify", new ModifyViewModel() { Action = "Modify", ContentTreeNodeInputModel = contentTreeNodeInputModel });
 

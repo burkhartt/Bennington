@@ -10,7 +10,7 @@
 @{  
     var currentUserContext = ServiceLocatorManager.Current.Resolve<ICurrentUserContext>();
     var determineWhoHasTheAbilityToPublish = ServiceLocatorManager.Current.Resolve<IDetermineWhoHasTheAbilityToPublish>();
-    var canPublish = determineWhoHasTheAbilityToPublish.DetermineIfThisUserCanPublish(currentUserContext.GetCurrentPrincipal().Identity.Name) || true;
+    var canPublish = determineWhoHasTheAbilityToPublish.DetermineIfThisUserCanPublish(currentUserContext.GetCurrentPrincipal().Identity.Name);
 }
 @{ Html.RenderAction("ContentItemNavigation", "ContentTreeNode", new { TreeNodeId = Model.ContentTreeNodeInputModel.TreeNodeId }); }
 
@@ -41,7 +41,7 @@
 			 } 
 			@if ((ViewContext.RouteData.Values["Action"].ToString() == "Modify") && (!string.IsNullOrEmpty(Model.ContentTreeNodeInputModel.PageId)) && canPublish)
    { 
-            <input type="button" class="button" value="Revert" onclick="$('#ContentTreeNodeInputModel_FormAction').val(this.value);$('#form').submit();" />
+            <input type="button" class="button" value="Revert" onclick="if (confirm('Are you sure you want to revert this item?')) { $('#ContentTreeNodeInputModel_FormAction').val(this.value);$('#form').submit(); }" />
 			<input type="button" class="button" value="Publish" onclick="$('#ContentTreeNodeInputModel_FormAction').val(this.value);$('#form').submit();" />
             <input type="button" class="button" value="Publish and Exit" onclick="$('#ContentTreeNodeInputModel_FormAction').val(this.value);$('#form').submit();" />
    } 
